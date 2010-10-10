@@ -40,7 +40,7 @@ public class GeocodeGeometry implements Serializable {
 	private GeocodeLocationType locationType = null;
 	@XmlElement(name="viewport",required=true)
 	private GeocodeFrame viewPort = null;
-	@XmlElement(name="bounds",required=true)
+	@XmlElement(name="bounds")
 	private GeocodeFrame bounds = null;
 
 	public GeocodeLocation getLocation() {

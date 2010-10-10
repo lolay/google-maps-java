@@ -27,6 +27,7 @@ import junit.framework.TestCase;
 
 public class GeocodeIntegration extends TestCase {
 	private static final Log testReverseLog = LogFactory.getLog(GeocodeIntegration.class.getName() + ".testReverse");
+	private static final Log testForwardLog = LogFactory.getLog(GeocodeIntegration.class.getName() + ".testForward");
 	private static final String baseUrl = "http://maps.googleapis.com";
 	
 	public void testReverse() throws Exception {
@@ -72,6 +73,51 @@ public class GeocodeIntegration extends TestCase {
 		validateLocation(geometry.getLocation(), 40.7142215D, -73.9614454D);
 		validateFrame(geometry.getViewPort(), 40.7110552D, -73.9646313D, 40.7173505D, -73.9583361D);
 		validateFrame(geometry.getBounds(), 40.7139010D, -73.9616800D, 40.7145047D, -73.9612874D);
+	}
+	
+	public void testForward() throws Exception {
+		Log log = testForwardLog;
+		GeocodeClient client = new ClientFactory(baseUrl).getGeocode();
+		GeocodeInvoker invoker = GeocodeInvoker.builder().address("1600 Amphitheatre Parkway, Mountain View, CA").sensor(false).build();
+		
+		GeocodeResponse response = null;
+		try {
+			long start = System.currentTimeMillis();
+			response = invoker.geocode(client);
+			long end = System.currentTimeMillis();
+			log.trace(String.format("Forward geocode took %s ms", end - start));
+		} catch (Exception e) {
+			log.error(e);
+			fail();
+		}
+		assertNotNull(response);
+		assertNotNull(response.getStatus());
+		assertEquals(GeocodeStatus.OK, response.getStatus());
+		assertNotNull(response.getResults());
+		assertEquals(1, response.getResults().size());
+		
+		GeocodeResult result1 = response.getResults().get(0);
+		assertNotNull(result1.getType());
+		assertEquals(GeocodeResultType.STREET_ADDRESS, result1.getType());
+		assertEquals("1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA", result1.getFormattedAddress());
+		assertNotNull(result1.getAddressComponents());
+		assertEquals(8, result1.getAddressComponents().size());
+		
+		GeocodeAddressComponent addressComponent1 = result1.getAddressComponents().get(0);
+		assertNotNull(addressComponent1.getType());
+		assertEquals(GeocodeAddressComponentType.STREET_NUMBER, addressComponent1.getType());
+		assertNotNull(addressComponent1.getLongName());
+		assertEquals("1600", addressComponent1.getLongName());
+		assertNotNull(addressComponent1.getShortName());
+		assertEquals("1600", addressComponent1.getShortName());
+		
+		GeocodeGeometry geometry = result1.getGeometry();
+		assertNotNull(geometry);
+		assertNotNull(geometry.getLocationType());
+		assertEquals(GeocodeLocationType.ROOFTOP, geometry.getLocationType());
+		validateLocation(geometry.getLocation(), 37.4227820D, -122.0850990D);
+		validateFrame(geometry.getViewPort(), 37.4196344D, -122.0882466D, 37.4259296D, -122.0819514D);
+		assertNull(geometry.getBounds());
 	}
 	
 	private void validateLocation(GeocodeLocation location, Double latitude, Double longitude) {
