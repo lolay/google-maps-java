@@ -45,6 +45,8 @@ public class GeocodeResult implements Serializable {
 	private List<GeocodeAddressComponent> addressComponents = null;
 	@XmlElement(name="geometry",required=true)
 	private GeocodeGeometry geometry = null;
+	@XmlElement(name="partial_match")
+	private Boolean partialMatch = null;
 	
 	public List<GeocodeResultType> getTypes() {
 		return types;
@@ -69,6 +71,12 @@ public class GeocodeResult implements Serializable {
 	}
 	public void setGeometry(GeocodeGeometry geometry) {
 		this.geometry = geometry;
+	}
+	public Boolean getPartialMatch() {
+		return partialMatch;
+	}
+	public void setPartialMatch(Boolean partialMatch) {
+		this.partialMatch = partialMatch;
 	}
 	
 	@Override
