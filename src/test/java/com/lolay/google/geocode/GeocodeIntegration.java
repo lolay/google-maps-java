@@ -65,15 +65,26 @@ public class GeocodeIntegration extends TestCase {
 		assertNotNull(addressComponent1.getShortName());
 		assertEquals("279-281", addressComponent1.getShortName());
 		
-		assertNotNull(result1.getGeometry());
-		
 		GeocodeGeometry geometry = result1.getGeometry();
+		assertNotNull(geometry);
 		assertNotNull(geometry.getLocationType());
 		assertEquals(GeocodeLocationType.RANGE_INTERPOLATED, geometry.getLocationType());
-		assertNotNull(geometry.getLocation());
-		assertNotNull(geometry.getLocation().getLat());
-		assertEquals(40.7142215D, geometry.getLocation().getLat());
-		assertNotNull(geometry.getLocation().getLng());
-		assertEquals(-73.9614454D, geometry.getLocation().getLng());
+		validateLocation(geometry.getLocation(), 40.7142215D, -73.9614454D);
+		validateFrame(geometry.getViewPort(), 40.7110552D, -73.9646313D, 40.7173505D, -73.9583361D);
+		validateFrame(geometry.getBounds(), 40.7139010D, -73.9616800D, 40.7145047D, -73.9612874D);
+	}
+	
+	private void validateLocation(GeocodeLocation location, Double latitude, Double longitude) {
+		assertNotNull(location);
+		assertNotNull(location.getLat());
+		assertEquals(latitude, location.getLat());
+		assertNotNull(location.getLng());
+		assertEquals(longitude, location.getLng());
+	}
+	
+	private void validateFrame(GeocodeFrame frame, Double southWestLatitude, Double southWestLongitude, Double northEastLatitude, Double northEastLongitude) {
+		assertNotNull(frame);
+		validateLocation(frame.getSouthWest(), southWestLatitude, southWestLongitude);
+		validateLocation(frame.getNorthEast(), northEastLatitude, northEastLongitude);
 	}
 }

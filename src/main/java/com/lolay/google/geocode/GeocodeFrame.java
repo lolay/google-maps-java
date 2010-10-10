@@ -29,43 +29,27 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@XmlRootElement(name="geometry")
+@XmlRootElement(name="frame")
 @XmlAccessorType(value=XmlAccessType.FIELD)
-public class GeocodeGeometry implements Serializable {
+public class GeocodeFrame implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement(name="location",required=true)
-	private GeocodeLocation location = null;
-	@XmlElement(name="location_type",required=true)
-	private GeocodeLocationType locationType = null;
-	@XmlElement(name="viewport",required=true)
-	private GeocodeFrame viewPort = null;
-	@XmlElement(name="bounds",required=true)
-	private GeocodeFrame bounds = null;
-
-	public GeocodeLocation getLocation() {
-		return location;
+	@XmlElement(name="southwest",required=true)
+	private GeocodeLocation southWest = null;
+	@XmlElement(name="northeast",required=true)
+	private GeocodeLocation northEast = null;
+	
+	public GeocodeLocation getSouthWest() {
+		return southWest;
 	}
-	public void setLocation(GeocodeLocation location) {
-		this.location = location;
+	public void setSouthWest(GeocodeLocation southWest) {
+		this.southWest = southWest;
 	}
-	public GeocodeLocationType getLocationType() {
-		return locationType;
+	public GeocodeLocation getNorthEast() {
+		return northEast;
 	}
-	public void setLocationType(GeocodeLocationType locationType) {
-		this.locationType = locationType;
-	}
-	public GeocodeFrame getViewPort() {
-		return viewPort;
-	}
-	public void setViewPort(GeocodeFrame viewPort) {
-		this.viewPort = viewPort;
-	}
-	public GeocodeFrame getBounds() {
-		return bounds;
-	}
-	public void setBounds(GeocodeFrame bounds) {
-		this.bounds = bounds;
+	public void setNorthEast(GeocodeLocation northEast) {
+		this.northEast = northEast;
 	}
 	
 	@Override
