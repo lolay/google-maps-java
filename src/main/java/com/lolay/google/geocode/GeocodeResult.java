@@ -38,7 +38,7 @@ public class GeocodeResult implements Serializable {
 	
 	@XmlElement(name="type",required=true)
 	@XmlJavaTypeAdapter(value=GeocodeResultTypeAdapter.class)
-	private GeocodeResultType type = null;
+	private List<GeocodeResultType> types = null;
 	@XmlElement(name="formatted_address")
 	private String formattedAddress = null;
 	@XmlElement(name="address_component")
@@ -46,11 +46,11 @@ public class GeocodeResult implements Serializable {
 	@XmlElement(name="geometry",required=true)
 	private GeocodeGeometry geometry = null;
 	
-	public GeocodeResultType getType() {
-		return type;
+	public List<GeocodeResultType> getTypes() {
+		return types;
 	}
-	public void setType(GeocodeResultType type) {
-		this.type = type;
+	public void setTypes(List<GeocodeResultType> types) {
+		this.types = types;
 	}
 	public String getFormattedAddress() {
 		return formattedAddress;

@@ -54,8 +54,8 @@ public class GeocodeIntegration extends TestCase {
 		assertEquals(8, response.getResults().size());
 		
 		GeocodeResult result1 = response.getResults().get(0);
-		assertNotNull(result1.getType());
-		assertEquals(GeocodeResultType.STREET_ADDRESS, result1.getType());
+		assertNotNull(result1.getTypes());
+		assertEquals(Arrays.asList(GeocodeResultType.STREET_ADDRESS), result1.getTypes());
 		assertEquals("279-281 Bedford Ave, Brooklyn, NY 11211, USA", result1.getFormattedAddress());
 		assertNotNull(result1.getAddressComponents());
 		assertEquals(8, result1.getAddressComponents().size());
@@ -99,8 +99,8 @@ public class GeocodeIntegration extends TestCase {
 		assertEquals(1, response.getResults().size());
 		
 		GeocodeResult result1 = response.getResults().get(0);
-		assertNotNull(result1.getType());
-		assertEquals(GeocodeResultType.STREET_ADDRESS, result1.getType());
+		assertNotNull(result1.getTypes());
+		assertEquals(Arrays.asList(GeocodeResultType.STREET_ADDRESS), result1.getTypes());
 		assertEquals("1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA", result1.getFormattedAddress());
 		assertNotNull(result1.getAddressComponents());
 		assertEquals(8, result1.getAddressComponents().size());
