@@ -19,7 +19,6 @@
 package com.lolay.google.geocode;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,38 +30,38 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@XmlRootElement(name="result")
+@XmlRootElement(name="address_component")
 @XmlAccessorType(value=XmlAccessType.FIELD)
-public class GeocodeResult implements Serializable {
+public class GeocodeAddressComponent implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@XmlElement(name="type",required=true)
-	@XmlJavaTypeAdapter(value=GeocodeResultTypeAdapter.class)
-	private GeocodeResultType type = null;
-	@XmlElement(name="formatted_address")
-	private String formattedAddress = null;
-	@XmlElement(name="address_component")
-	private List<GeocodeAddressComponent> addressComponents = null;
-	
-	public GeocodeResultType getType() {
+	@XmlJavaTypeAdapter(value=GeocodeAddressComponentTypeAdapter.class)
+	private GeocodeAddressComponentType type = null;
+	@XmlElement(name="long_name")
+	private String longName = null;
+	@XmlElement(name="short_name")
+	private String shortName = null;
+
+	public GeocodeAddressComponentType getType() {
 		return type;
 	}
-	public void setType(GeocodeResultType type) {
+	public void setType(GeocodeAddressComponentType type) {
 		this.type = type;
 	}
-	public String getFormattedAddress() {
-		return formattedAddress;
+	public String getLongName() {
+		return longName;
 	}
-	public void setFormattedAddress(String formattedAddress) {
-		this.formattedAddress = formattedAddress;
+	public void setLongName(String longName) {
+		this.longName = longName;
 	}
-	public List<GeocodeAddressComponent> getAddressComponents() {
-		return addressComponents;
+	public String getShortName() {
+		return shortName;
 	}
-	public void setAddressComponents(List<GeocodeAddressComponent> addressComponents) {
-		this.addressComponents = addressComponents;
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

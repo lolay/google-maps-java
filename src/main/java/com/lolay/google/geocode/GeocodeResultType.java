@@ -18,24 +18,36 @@
  */
 package com.lolay.google.geocode;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.util.Arrays;
 
-public class GeocodeTypeAdapter extends XmlAdapter<String,GeocodeType> {
-	@Override
-	public GeocodeType unmarshal(String value) throws Exception {
-		if (value == null || value.isEmpty()) {
-			return null;
+public enum GeocodeResultType {
+	STREET_ADDRESS,
+	ROUTE,
+	INTERSECTION,
+	POLITICAL,
+	COUNTRY,
+	ADMINISTRATIVE_AREA_LEVEL_1,
+	ADMINISTRATIVE_AREA_LEVEL_2,
+	ADMINISTRATIVE_AREA_LEVEL_3,
+	COLLOQUIAL_AREA,
+	LOCALITY,
+	SUBLOCALITY,
+	NEIGHBORHOOD,
+	PREMISE,
+	SUBPREMISE,
+	POSTAL_CODE,
+	NATURAL_FEATURE,
+	AIRPORT,
+	PARK,
+	POINT_OF_INTEREST;
+	
+	public static GeocodeResultType valueOfIgnoreCase(String value) {
+		for (GeocodeResultType type : Arrays.asList(GeocodeResultType.values())) {
+			if (type.toString().equalsIgnoreCase(value)) {
+				return type;
+			}
 		}
 		
-		return GeocodeType.valueOfIgnoreCase(value);
-	}
-
-	@Override
-	public String marshal(GeocodeType value) throws Exception {
-		if (value == null) {
-			return null;
-		}
-		
-		return value.toString().toLowerCase();
+		throw new IllegalArgumentException(String.format("Could not find a GeocodeResultType for %s", value));
 	}
 }

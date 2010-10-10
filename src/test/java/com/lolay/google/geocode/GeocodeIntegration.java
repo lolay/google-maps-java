@@ -52,7 +52,17 @@ public class GeocodeIntegration extends TestCase {
 		
 		GeocodeResult result1 = response.getResults().get(0);
 		assertNotNull(result1.getType());
-		assertEquals(GeocodeType.STREET_ADDRESS, result1.getType());
+		assertEquals(GeocodeResultType.STREET_ADDRESS, result1.getType());
 		assertEquals("279-281 Bedford Ave, Brooklyn, NY 11211, USA", result1.getFormattedAddress());
+		assertNotNull(result1.getAddressComponents());
+		assertEquals(8, result1.getAddressComponents().size());
+		
+		GeocodeAddressComponent addressComponent1 = result1.getAddressComponents().get(0);
+		assertNotNull(addressComponent1.getType());
+		assertEquals(GeocodeAddressComponentType.STREET_NUMBER, addressComponent1.getType());
+		assertNotNull(addressComponent1.getLongName());
+		assertEquals("279-281", addressComponent1.getLongName());
+		assertNotNull(addressComponent1.getShortName());
+		assertEquals("279-281", addressComponent1.getShortName());
 	}
 }
