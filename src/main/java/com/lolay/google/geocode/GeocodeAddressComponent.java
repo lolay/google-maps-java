@@ -19,6 +19,7 @@
 package com.lolay.google.geocode;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -37,17 +38,17 @@ public class GeocodeAddressComponent implements Serializable {
 	
 	@XmlElement(name="type",required=true)
 	@XmlJavaTypeAdapter(value=GeocodeAddressComponentTypeAdapter.class)
-	private GeocodeAddressComponentType type = null;
+	private List<GeocodeAddressComponentType> types = null;
 	@XmlElement(name="long_name")
 	private String longName = null;
 	@XmlElement(name="short_name")
 	private String shortName = null;
 
-	public GeocodeAddressComponentType getType() {
-		return type;
+	public List<GeocodeAddressComponentType> getTypes() {
+		return types;
 	}
-	public void setType(GeocodeAddressComponentType type) {
-		this.type = type;
+	public void setTypes(List<GeocodeAddressComponentType> types) {
+		this.types = types;
 	}
 	public String getLongName() {
 		return longName;

@@ -18,6 +18,8 @@
  */
 package com.lolay.google.geocode;
 
+import java.util.Arrays;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -59,8 +61,8 @@ public class GeocodeIntegration extends TestCase {
 		assertEquals(8, result1.getAddressComponents().size());
 		
 		GeocodeAddressComponent addressComponent1 = result1.getAddressComponents().get(0);
-		assertNotNull(addressComponent1.getType());
-		assertEquals(GeocodeAddressComponentType.STREET_NUMBER, addressComponent1.getType());
+		assertNotNull(addressComponent1.getTypes());
+		assertEquals(Arrays.asList(GeocodeAddressComponentType.STREET_NUMBER), addressComponent1.getTypes());
 		assertNotNull(addressComponent1.getLongName());
 		assertEquals("279-281", addressComponent1.getLongName());
 		assertNotNull(addressComponent1.getShortName());
@@ -104,8 +106,8 @@ public class GeocodeIntegration extends TestCase {
 		assertEquals(8, result1.getAddressComponents().size());
 		
 		GeocodeAddressComponent addressComponent1 = result1.getAddressComponents().get(0);
-		assertNotNull(addressComponent1.getType());
-		assertEquals(GeocodeAddressComponentType.STREET_NUMBER, addressComponent1.getType());
+		assertNotNull(addressComponent1.getTypes());
+		assertEquals(Arrays.asList(GeocodeAddressComponentType.STREET_NUMBER), addressComponent1.getTypes());
 		assertNotNull(addressComponent1.getLongName());
 		assertEquals("1600", addressComponent1.getLongName());
 		assertNotNull(addressComponent1.getShortName());
