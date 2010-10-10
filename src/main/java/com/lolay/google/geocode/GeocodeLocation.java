@@ -19,58 +19,39 @@
 package com.lolay.google.geocode;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@XmlRootElement(name="result")
+@XmlRootElement(name="location")
 @XmlAccessorType(value=XmlAccessType.FIELD)
-public class GeocodeResult implements Serializable {
+public class GeocodeLocation implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement(name="type",required=true)
-	@XmlJavaTypeAdapter(value=GeocodeResultTypeAdapter.class)
-	private GeocodeResultType type = null;
-	@XmlElement(name="formatted_address")
-	private String formattedAddress = null;
-	@XmlElement(name="address_component")
-	private List<GeocodeAddressComponent> addressComponents = null;
-	@XmlElement(name="geometry",required=true)
-	private GeocodeGeometry geometry = null;
+	@XmlElement(name="lat",required=true)
+	private Double lat;
+	@XmlElement(name="lng",required=true)
+	private Double lng;
 	
-	public GeocodeResultType getType() {
-		return type;
+	public Double getLat() {
+		return lat;
 	}
-	public void setType(GeocodeResultType type) {
-		this.type = type;
+	public void setLat(Double lat) {
+		this.lat = lat;
 	}
-	public String getFormattedAddress() {
-		return formattedAddress;
+	public Double getLng() {
+		return lng;
 	}
-	public void setFormattedAddress(String formattedAddress) {
-		this.formattedAddress = formattedAddress;
+	public void setLng(Double lng) {
+		this.lng = lng;
 	}
-	public List<GeocodeAddressComponent> getAddressComponents() {
-		return addressComponents;
-	}
-	public void setAddressComponents(List<GeocodeAddressComponent> addressComponents) {
-		this.addressComponents = addressComponents;
-	}
-	public GeocodeGeometry getGeometry() {
-		return geometry;
-	}
-	public void setGeometry(GeocodeGeometry geometry) {
-		this.geometry = geometry;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

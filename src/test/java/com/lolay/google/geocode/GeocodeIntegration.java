@@ -32,7 +32,7 @@ public class GeocodeIntegration extends TestCase {
 	public void testReverse() throws Exception {
 		Log log = testReverseLog;
 		GeocodeClient client = new ClientFactory(baseUrl).getGeocode();
-		GeocodeInvoker invoker = GeocodeInvoker.builder().latlng(40.714224D, -73.961452D).sensor(false).build();
+		GeocodeInvoker invoker = GeocodeInvoker.builder().latLng(40.714224D, -73.961452D).sensor(false).build();
 		
 		GeocodeResponse response = null;
 		try {
@@ -64,5 +64,16 @@ public class GeocodeIntegration extends TestCase {
 		assertEquals("279-281", addressComponent1.getLongName());
 		assertNotNull(addressComponent1.getShortName());
 		assertEquals("279-281", addressComponent1.getShortName());
+		
+		assertNotNull(result1.getGeometry());
+		
+		GeocodeGeometry geometry = result1.getGeometry();
+		assertNotNull(geometry.getLocationType());
+		assertEquals(GeocodeLocationType.RANGE_INTERPOLATED, geometry.getLocationType());
+		assertNotNull(geometry.getLocation());
+		assertNotNull(geometry.getLocation().getLat());
+		assertEquals(40.7142215D, geometry.getLocation().getLat());
+		assertNotNull(geometry.getLocation().getLng());
+		assertEquals(-73.9614454D, geometry.getLocation().getLng());
 	}
 }

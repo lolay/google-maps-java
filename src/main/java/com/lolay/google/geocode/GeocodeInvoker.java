@@ -32,7 +32,7 @@ public class GeocodeInvoker implements Serializable {
 	
 	private Long warningLimit = 10000L;
 	private String address = null;
-	private String latlng = null;
+	private String latLng = null;
 	private String bounds = null;
 	private String region = null;
 	private String language = null;
@@ -50,11 +50,11 @@ public class GeocodeInvoker implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getLatlng() {
-		return latlng;
+	public String getLatLng() {
+		return latLng;
 	}
-	public void setLatlng(String latlng) {
-		this.latlng = latlng;
+	public void setLatLng(String latLng) {
+		this.latLng = latLng;
 	}
 	public String getBounds() {
 		return bounds;
@@ -99,7 +99,7 @@ public class GeocodeInvoker implements Serializable {
 		
 		Long start = System.currentTimeMillis();
 
-		response = client.geocode(getAddress(), getLatlng(), getBounds(), getRegion(), getLanguage(), getSensor());
+		response = client.geocode(getAddress(), getLatLng(), getBounds(), getRegion(), getLanguage(), getSensor());
 		
 		Long end = System.currentTimeMillis();
 		Long diff = end - start;
@@ -134,8 +134,8 @@ public class GeocodeInvoker implements Serializable {
 			return this;
 		}
 		
-		public Builder latlng(Double latitude, Double longitude) {
-			instance.setLatlng(latitude + "," + longitude);
+		public Builder latLng(Double latitude, Double longitude) {
+			instance.setLatLng(latitude + "," + longitude);
 			return this;
 		}
 		

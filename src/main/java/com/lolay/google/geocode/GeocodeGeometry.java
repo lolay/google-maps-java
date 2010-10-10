@@ -19,56 +19,37 @@
 package com.lolay.google.geocode;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@XmlRootElement(name="result")
+@XmlRootElement(name="geometry")
 @XmlAccessorType(value=XmlAccessType.FIELD)
-public class GeocodeResult implements Serializable {
+public class GeocodeGeometry implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement(name="type",required=true)
-	@XmlJavaTypeAdapter(value=GeocodeResultTypeAdapter.class)
-	private GeocodeResultType type = null;
-	@XmlElement(name="formatted_address")
-	private String formattedAddress = null;
-	@XmlElement(name="address_component")
-	private List<GeocodeAddressComponent> addressComponents = null;
-	@XmlElement(name="geometry",required=true)
-	private GeocodeGeometry geometry = null;
-	
-	public GeocodeResultType getType() {
-		return type;
+	@XmlElement(name="location",required=true)
+	private GeocodeLocation location = null;
+	@XmlElement(name="location_type",required=true)
+	private GeocodeLocationType locationType = null;
+
+	public GeocodeLocation getLocation() {
+		return location;
 	}
-	public void setType(GeocodeResultType type) {
-		this.type = type;
+	public void setLocation(GeocodeLocation location) {
+		this.location = location;
 	}
-	public String getFormattedAddress() {
-		return formattedAddress;
+	public GeocodeLocationType getLocationType() {
+		return locationType;
 	}
-	public void setFormattedAddress(String formattedAddress) {
-		this.formattedAddress = formattedAddress;
-	}
-	public List<GeocodeAddressComponent> getAddressComponents() {
-		return addressComponents;
-	}
-	public void setAddressComponents(List<GeocodeAddressComponent> addressComponents) {
-		this.addressComponents = addressComponents;
-	}
-	public GeocodeGeometry getGeometry() {
-		return geometry;
-	}
-	public void setGeometry(GeocodeGeometry geometry) {
-		this.geometry = geometry;
+	public void setLocationType(GeocodeLocationType locationType) {
+		this.locationType = locationType;
 	}
 	
 	@Override
