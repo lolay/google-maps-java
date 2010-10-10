@@ -1,0 +1,3 @@
+The following are libraries and widgets for accessing the Google services using Java.
+This does leverage CXF proxies and clients for the REST calls. So, make sure you're ok with
+using CXF.
