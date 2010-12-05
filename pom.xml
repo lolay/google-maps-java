@@ -28,20 +28,34 @@
 	<version>1-SNAPSHOT</version>
 
 	<scm>
-		<connection>git://github.com/lolay/google-maps-java.git</connection>
-		<developerConnection>scm:git:git@github.com:lolay/google-maps-java.git</developerConnection>
-		<url>http://github.com/lolay/google-maps-java/tree/master</url>
+		<connection>scm:git:git://github.com/lolay/google-maps-java.git</connection>
+		<developerConnection>scm:git:git://git@github.com/lolay/google-maps-java.git</developerConnection>
+		<url>http://github.com/lolay/google-maps-java.git</url>
 	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>lolay</id>
+			<name>Lolay's Repository</name>
+			<url>http://maven.lolay.com</url>
+		</repository>
+	</distributionManagement>
 	
 	<build>
 		<plugins>
 			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<altDeploymentRepository>site::default::${maven-site}</altDeploymentRepository>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-					</configuration>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
