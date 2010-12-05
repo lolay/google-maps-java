@@ -24,7 +24,7 @@
 	<artifactId>google-maps</artifactId>
 	<packaging>jar</packaging>
 	<name>Google MapsClient</name>
-	<version>1</version>
+	<version>2-SNAPSHOT</version>
 
 	<scm>
 		<connection>scm:git:git://github.com/lolay/google-maps-java.git</connection>
