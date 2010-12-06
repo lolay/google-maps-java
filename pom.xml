@@ -28,8 +28,8 @@
 
 	<scm>
 		<connection>scm:git:git://github.com/lolay/google-maps-java.git</connection>
-		<developerConnection>scm:git:git://git@github.com/lolay/google-maps-java.git</developerConnection>
-		<url>http://github.com/lolay/google-maps-java.git</url>
+		<developerConnection>scm:git:git@github.com:lolay/google-maps-java.git</developerConnection>
+		<url>http://github.com/lolay/google-maps-java</url>
 	</scm>
 	
 	<distributionManagement>
